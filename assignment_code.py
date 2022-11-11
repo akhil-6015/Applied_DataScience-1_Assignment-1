@@ -1,12 +1,10 @@
+# Here imported the required libraries
 import matplotlib.pyplot as plt
 import pandas as pd
-
-
 
 #Reading the data from dataset
 data = pd.read_csv("https://s3-eu-west-1.amazonaws.com/datagovuk-production-ckan-organogram/organogram-december-2021/resources/2022-10-05T09-15-50Z-2022-10-05-organogram-junior.csv")
     
-
 #dataframe view
 data.head()
 
@@ -22,13 +20,11 @@ df2 = pd.DataFrame(pd.unique(data[['Grade']].values.ravel('K')))
 df3 = pd.DataFrame(pd.unique(data[['Payscale Minimum (£)']].values.ravel('K')))
 df4 = pd.DataFrame(pd.unique(data[['Payscale Maximum (£)']].values.ravel('K')))
 
-
 #concating all the unique data through pd.concat()
 dff = pd.concat([df1,df2,df3,df4],axis=1)
 
 #creating columns for the dataset
 dff.columns = ['Generic Job Title','Grade', 'Payscale Minimum (£)', 'Payscale Maximum (£)']
-
 
 #Write linePlot function to create Line Plot.
 def linePlot(linePlotData):  
@@ -42,7 +38,6 @@ def linePlot(linePlotData):
     
 #Calling the multiPlot function for the dataframe to plot the MultiLine Plot.
 linePlot(dff)
-
 
 #Write Pie plot function to create Pie Plot.
 def piePlot(pieData):
@@ -58,7 +53,7 @@ def piePlot(pieData):
 #Calling the PiePlot function to plot the pie Plot.
 piePlot(dff)
 
-#Write Hist plot function to create Hist Plot.
+#Write bar plot function to create Hist Plot.
 def barPlot(barData):  #write the HistPlot to plot the histogram plot.
     barData.plot(x="Grade",y=['Payscale Minimum (£)','Payscale Maximum (£)'],kind='bar',figsize=(15, 5))  
     plt.title("Payscale of Different Job Title")  #set the tile of the plot.
